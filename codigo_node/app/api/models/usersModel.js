@@ -5,7 +5,7 @@ const saltRounds = 10;
 
 const Schema = mongoose.Schema;
 const UserSchema = new Schema({
-    nome: {
+    name: {
         type: String,
         trim: true,
         required: true
@@ -18,28 +18,28 @@ const UserSchema = new Schema({
         maxlength: [11, "Informe um CPF valido"],
         unique: true,
         validate: {
-            validator: function(cpf) {
-                var Soma;
-                var Resto;
-                Soma = 0;
-              if (cpf == "00000000000") return false;
-                 
-              for (i=1; i<=9; i++) Soma = Soma + parseInt(cpf.substring(i-1, i)) * (11 - i);
-              Resto = (Soma * 10) % 11;
-               
-                if ((Resto == 10) || (Resto == 11))  Resto = 0;
-                if (Resto != parseInt(cpf.substring(9, 10)) ) return false;
-               
-              Soma = 0;
-                for (i = 1; i <= 10; i++) Soma = Soma + parseInt(cpf.substring(i-1, i)) * (12 - i);
-                Resto = (Soma * 10) % 11;
-               
-                if ((Resto == 10) || (Resto == 11))  Resto = 0;
-                if (Resto != parseInt(cpf.substring(10, 11) ) ) return false;
+            validator: function (cpf) {
+                var sum;
+                var rest;
+                sum = 0;
+                if (cpf == "00000000000") return false;
+
+                for (i = 1; i <= 9; i++) sum = sum + parseInt(cpf.substring(i - 1, i)) * (11 - i);
+                rest = (sum * 10) % 11;
+
+                if ((rest == 10) || (rest == 11)) rest = 0;
+                if (rest != parseInt(cpf.substring(9, 10))) return false;
+
+                sum = 0;
+                for (i = 1; i <= 10; i++) sum = sum + parseInt(cpf.substring(i - 1, i)) * (12 - i);
+                rest = (sum * 10) % 11;
+
+                if ((rest == 10) || (rest == 11)) rest = 0;
+                if (rest != parseInt(cpf.substring(10, 11))) return false;
                 return true;
             },
             message: props => `${props.value} não é um cpf valido!`
-          },
+        },
     },
     email: {
         type: String,
@@ -51,15 +51,15 @@ const UserSchema = new Schema({
         trim: true,
         required: true
     },
-    data_de_nascimento: {
+    birth_date: {
         type: Date
     },
-    data_de_cadastro: {
+    registration_date: {
         type: Date,
         default: Date.now
     },
-    lista_enderecos: [{
-        Logradouro: {
+    address_list: [{
+        Street: {
             type: String,
         },
         CEP: {
@@ -68,10 +68,10 @@ const UserSchema = new Schema({
             minlength: [8, "Informe um CEP valido"],
             maxlength: [8, "Informe um CEP valido"],
         },
-        Bairro: {
+        District: {
             type: String,
         },
-        Cidade: {
+        City: {
             type: String,
         },
         UF: {
@@ -81,8 +81,8 @@ const UserSchema = new Schema({
             maxlength: [2, "Informe um UF valido"],
         }
     }],
-    lista_telefones: [{
-        telefone: {
+    phone_list: [{
+        phone: {
             type: String,
             minlength: [10, "Informe um numero de telefone valido"],
             maxlength: [11, "Informe um numero de telefone valido"],

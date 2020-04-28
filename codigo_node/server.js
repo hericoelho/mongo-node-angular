@@ -2,12 +2,14 @@ const express = require('express');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
 const usersRoutes = require('./routes/usersRoutes');
+const solicitationsRoutes = require('./routes/solicitationsRoutes');
 const authRoutes = require('./routes/authRoutes');
 const mongoose = require('./config/database'); //database configuration
 var jwt = require('jsonwebtoken');
 const app = express();
 
 
+app.use(express.json());
 
 app.set('secretKey', 'nodeRestApi'); // jwt secret token
 
@@ -25,11 +27,13 @@ app.get('/', function (req, res) {
 app.use('/api/users', authRoutes);
 
 // private route
-app.use('/api/users',  validateUser, usersRoutes);
+app.use('/api/users', validateUser, usersRoutes);
+app.use('/api/solicitations', validateUser, solicitationsRoutes);
 
 app.get('/favicon.ico', function (req, res) {
   res.sendStatus(204);
 });
+
 function validateUser(req, res, next) {
   let token = req.headers['x-access-token'] || req.headers['authorization']; // Express headers are auto converted to lowercase
   if (token.startsWith('Bearer ')) {
@@ -40,7 +44,7 @@ function validateUser(req, res, next) {
     if (err) {
       res.json({ status: "error", message: err.message, data: null });
     } else {
-      // add user id to request
+      // add user id to request      
       req.body.userId = decoded.id;
       next();
     }

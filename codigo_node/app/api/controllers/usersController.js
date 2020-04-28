@@ -139,27 +139,27 @@ module.exports = {
          });
    }, refresh: function (req, res) {
       res.status(200).send({
-         message: "Validade do token atualizada" 
-      });  
-   },fetch: function (req, res) {
-      userModel.findById(req.body.userId)
-      .then(user => {
-         if (!user) {
-            return res.status(404).send({
-               message: "Nenhum usuario encontrado para o  id : " + req.params.id
-            });
-         }
-         res.send(user);
-      }).catch(err => {
-         if (err.kind === 'ObjectId') {
-            return res.status(404).send({
-               message: "Nenhum usuario encontrado para o  id : " + req.params.id
-            });
-         }
-         res.status(500).send({
-            message: err.message || "Ocorreu um erro ao acessar os dados do usuario id : " + req.params.id
-         });
+         message: "Validade do token atualizada"
       });
+   }, fetch: function (req, res) {
+      userModel.findById(req.body.userId)
+         .then(user => {
+            if (!user) {
+               return res.status(404).send({
+                  message: "Nenhum usuario encontrado para o  id : " + req.params.id
+               });
+            }
+            res.send(user);
+         }).catch(err => {
+            if (err.kind === 'ObjectId') {
+               return res.status(404).send({
+                  message: "Nenhum usuario encontrado para o  id : " + req.params.id
+               });
+            }
+            res.status(500).send({
+               message: err.message || "Ocorreu um erro ao acessar os dados do usuario id : " + req.params.id
+            });
+         });
    },
 
 
