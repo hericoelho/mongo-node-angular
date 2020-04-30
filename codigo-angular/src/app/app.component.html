@@ -2,8 +2,13 @@
 <nav class="navbar navbar-expand navbar-dark bg-dark">
   <div class="navbar-nav">
     <a class="nav-item nav-link" routerLink="/">Home</a>
-    <a class="nav-item nav-link" routerLink="/login">Login</a>
-    <a class="nav-item nav-link" routerLink="/register">Register</a>
+    <ng-template [ngIf]="currentUser" [ngIfElse]="notLoged">
+      <a class="nav-item nav-link" (click)="logout()">Logout</a>
+    </ng-template>
+    <ng-template #notLoged>
+      <a class="nav-item nav-link" routerLink="/login">Login</a>
+      <a class="nav-item nav-link" routerLink="/register">Register</a>
+    </ng-template>
   </div>
 </nav>
 
@@ -12,6 +17,7 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-8 offset-sm-2">
+        <alert></alert>
         <router-outlet></router-outlet>
       </div>
     </div>
