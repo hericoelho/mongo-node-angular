@@ -10,24 +10,11 @@ import { SolicitationService } from '../_services/solicitation.service';
 })
 export class SolicitationListComponent implements OnInit {
   solicitations = [];
-  solicitation : any;
 
   constructor(private solicitationService: SolicitationService) { }
 
   ngOnInit(): void {
     this.loadAllSolicitations();
-  }
-
-  getSolicitation(id: number) {
-    this.solicitationService.get(id)
-      .pipe(first())
-      .subscribe(solicitation => this.solicitation = solicitation);
-  }
-
-  saveSolicitation(id: number) {
-    this.solicitationService.get(id)
-      .pipe(first())
-      .subscribe(solicitation => this.solicitation = solicitation);
   }
 
   deleteSolicitation(id: number) {

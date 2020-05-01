@@ -1,10 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
-button.btn-primary {
-    background-color: #ff932e;
-    border-color: #ff932e;
-}
-
-button.btn-primary:hover {
-    background-color: #cc6300;
-    border-color: #cc6300;
+body {
+    background-color: #f8fbff;
+    
+    button.btn-primary {
+        background-color: #ff932e;
+        border-color: #ff932e;
+    }
+    
+    button.btn-primary:hover {
+        background-color: #cc6300;
+        border-color: #cc6300;
+    }
+    .btn-primary:disabled {
+        background-color: #f5bc87;
+        border-color: #f5bc87;
+    }
+    .pull-right {
+        float: right;
+    }
+    
+    .jumbotron {
+        background-color: white;
+        border-radius: 2.3rem;
+    }
 }

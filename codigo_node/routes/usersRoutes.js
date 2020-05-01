@@ -1,9 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const userController = require('../app/api/controllers/usersController');
-var cors = require('cors')
-
-router.use(cors())
 
 router.get('/', userController.findAll);
 router.get('/refresh', userController.refresh);

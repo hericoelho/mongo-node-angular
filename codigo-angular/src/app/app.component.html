@@ -3,12 +3,12 @@
   <div class="navbar-nav">
     <a class="nav-item nav-link" routerLink="/">Home</a>
     <ng-template [ngIf]="currentUser" [ngIfElse]="notLoged">
-      <a class="nav-item nav-link" (click)="logout()">Logout</a>
       <a class="nav-item nav-link" routerLink="/solicitation">Solicitações</a>
+      <a class="nav-item nav-link pull-right" (click)="logout()">Logout</a>
     </ng-template>
     <ng-template #notLoged>
-      <a class="nav-item nav-link" routerLink="/login">Login</a>
-      <a class="nav-item nav-link" routerLink="/register">Register</a>
+      <a class="nav-item nav-link" routerLink="/login">Entrar</a>
+      <a class="nav-item nav-link" routerLink="/register">Cadastro</a>
     </ng-template>
   </div>
 </nav>

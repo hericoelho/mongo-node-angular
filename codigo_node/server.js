@@ -44,7 +44,7 @@ function validateUser(req, res, next) {
   }
   jwt.verify(token, req.app.get('secretKey'), function (err, decoded) {
     if (err) {
-      res.json({ status: "error", message: err.message, data: null });
+      res.status(401).json({ status: "error", message: err.message, data: null });
     } else {
       // add user id to request      
       req.body.userId = decoded.id;

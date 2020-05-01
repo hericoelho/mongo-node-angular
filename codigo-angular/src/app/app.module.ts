@@ -16,6 +16,7 @@ import { fakeBackendProvider } from './_helpers/fake-backend';
 
 import { AlertComponent } from './_components/alert/alert.component';
 import { SolicitationListComponent } from './solicitation-list/solicitation-list.component';
+import { SolicitationDetailsComponent } from './solicitation-details/solicitation-details.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { SolicitationListComponent } from './solicitation-list/solicitation-list
     LoginComponent,
     RegisterComponent,
     AlertComponent,
-    SolicitationListComponent
+    SolicitationListComponent,
+    SolicitationDetailsComponent
   ],
   imports: [
     BrowserModule,
