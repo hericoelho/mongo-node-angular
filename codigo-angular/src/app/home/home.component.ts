@@ -12,6 +12,7 @@ import { AuthenticationService } from '../_services/authentication.service';
 export class HomeComponent implements OnInit {
   currentUser: any;
   users = [];
+  showUsers = false;
 
   constructor(
     private authenticationService: AuthenticationService,
