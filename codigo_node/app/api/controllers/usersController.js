@@ -8,7 +8,7 @@ module.exports = {
          cpfSomenteNumeros = req.body.cpf.replace(/[^\d]+/g, '');
       }
       const user = new userModel({
-         nome: req.body.nome,
+         name: req.body.name,
          cpf: cpfSomenteNumeros,
          email: req.body.email,
          password: req.body.password,
@@ -37,7 +37,7 @@ module.exports = {
          password = req.query.password;
       }
       console.log(req.body.password);
-      userModel.findOne({ email: email }, 'nome email cpf password')
+      userModel.findOne({ email: email }, 'name email cpf password')
          .then(user => {
             if (user) {
                if (bcrypt.compareSync(password, user.password)) {
@@ -62,7 +62,7 @@ module.exports = {
          });
    },
    findAll: function (req, res) {
-      userModel.find({}, '_id nome email cpf')
+      userModel.find({}, '_id name email cpf')
          .then(users => {
             res.send(users);
          }).catch(err => {
@@ -98,7 +98,7 @@ module.exports = {
       }
       userModel.findByIdAndUpdate(req.params.id,
          {
-            nome: req.body.nome,
+            name: req.body.name,
             cpf: cpfSomenteNumeros,
             email: req.body.email,
             password: req.body.password,
