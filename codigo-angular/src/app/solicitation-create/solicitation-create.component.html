@@ -1,0 +1,54 @@
+<h2>Nova Solicitação <a routerLink="/" class="btn btn-link pull-right">voltar</a></h2>
+<form [formGroup]="solicitationCreateForm" (ngSubmit)="onSubmit()">
+    <div class="my-5">
+        <h3>Paciente</h3>
+        <hr>
+        <div class="form-group">
+            <label for="name">Nome</label>
+            <input type="text" formControlName="name" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.name.errors }" placeholder="Nome do paciente"/>
+            <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                <div *ngIf="f.name.errors.required">O campo nome do paciente é obrigatório</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="age">Idade</label>
+            <input type="number" formControlName="age" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.age.errors }" placeholder="Idade do paciente"/>
+            <div *ngIf="submitted && f.age.errors" class="invalid-feedback">
+                <div *ngIf="f.age.errors.required">O campo idade do paciente é obrigatório</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="sex">Sexo</label>
+            <select formControlName="sex" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.sex.errors }">
+                <option value='' disabled>Selecione  o sexo do paciente</option>
+                <option value=0>Masculino</option>
+                <option value=1>Feminino</option>
+            </select> 
+            <div *ngIf="submitted && f.sex.errors" class="invalid-feedback">
+                <div *ngIf="f.sex.errors.required">O campo sexo do paciente é obrigatório</div>
+            </div>
+        </div>
+    </div>
+    <div class="my-5">
+        <h3>Procedimento</h3>
+        <hr>
+        <div class="form-group">
+            <label for="cod">Código</label>
+            <input type="cod" formControlName="cod" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.cod.errors }" placeholder="Codigo do procedimento"/>
+            <div *ngIf="submitted && f.cod.errors" class="invalid-feedback">
+                <div *ngIf="f.cod.errors.required">O campo codigo do procedimento é obrigatório</div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <button [disabled]="loading" class="btn btn-primary">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+            Enviar
+        </button>
+        <a routerLink="/login" class="btn btn-link">Cancel</a>
+    </div>
+</form>

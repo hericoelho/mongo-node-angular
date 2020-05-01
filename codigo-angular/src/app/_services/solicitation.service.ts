@@ -17,7 +17,7 @@ export class SolicitationService {
     return this.http.get<any[]>(`${environment.apiUrl}/api/solicitations/${id}`);
   }
 
-  register(solicitation) {
+  post(solicitation) {
     return this.http.post(`${environment.apiUrl}/api/solicitations`, solicitation);
   }
 
