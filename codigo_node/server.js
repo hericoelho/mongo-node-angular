@@ -7,7 +7,9 @@ const authRoutes = require('./routes/authRoutes');
 const mongoose = require('./config/database'); //database configuration
 var jwt = require('jsonwebtoken');
 const app = express();
+var cors = require('cors')
 
+app.use(cors())
 
 app.use(express.json());
 

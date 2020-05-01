@@ -1,9 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const solicitationController = require('../app/api/controllers/solicitationsController');
-var cors = require('cors')
-
-router.use(cors())
 
 router.post('/', solicitationController.create);
 router.get('/', solicitationController.findAll);
