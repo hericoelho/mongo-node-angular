@@ -15,6 +15,7 @@ import { ErrorInterceptor } from './_helpers/error.interceptor';
 import { fakeBackendProvider } from './_helpers/fake-backend';
 
 import { AlertComponent } from './_components/alert/alert.component';
+import { SolicitationListComponent } from './solicitation-list/solicitation-list.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { AlertComponent } from './_components/alert/alert.component';
     HomeComponent,
     LoginComponent,
     RegisterComponent,
-    AlertComponent
+    AlertComponent,
+    SolicitationListComponent
   ],
   imports: [
     BrowserModule,

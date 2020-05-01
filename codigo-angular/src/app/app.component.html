@@ -4,6 +4,7 @@
     <a class="nav-item nav-link" routerLink="/">Home</a>
     <ng-template [ngIf]="currentUser" [ngIfElse]="notLoged">
       <a class="nav-item nav-link" (click)="logout()">Logout</a>
+      <a class="nav-item nav-link" routerLink="/solicitation">Solicitações</a>
     </ng-template>
     <ng-template #notLoged>
       <a class="nav-item nav-link" routerLink="/login">Login</a>

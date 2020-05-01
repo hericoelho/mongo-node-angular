@@ -16,9 +16,9 @@ export class HomeComponent implements OnInit {
   constructor(
     private authenticationService: AuthenticationService,
     private userService: UserService
-) {
+  ) {
     this.currentUser = this.authenticationService.currentUserValue;
-}
+  }
 
   ngOnInit(): void {
     this.loadAllUsers();
@@ -26,14 +26,14 @@ export class HomeComponent implements OnInit {
 
   deleteUser(id: number) {
     this.userService.delete(id)
-        .pipe(first())
-        .subscribe(() => this.loadAllUsers());
-}
+      .pipe(first())
+      .subscribe(() => this.loadAllUsers());
+  }
 
-private loadAllUsers() {
+  loadAllUsers() {
     this.userService.getAll()
-        .pipe(first())
-        .subscribe(users => this.users = users);
-}
+      .pipe(first())
+      .subscribe(users => this.users = users);
+  }
 
 }

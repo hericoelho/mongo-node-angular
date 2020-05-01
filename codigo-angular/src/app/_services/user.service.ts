@@ -10,15 +10,15 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-    getAll() {
-        return this.http.get<any[]>(`${environment.apiUrl}/api/users`);
-    }
+  getAll() {
+    return this.http.get<any[]>(`${environment.apiUrl}/api/users`);
+  }
 
-    register(user) {
-        return this.http.post(`${environment.apiUrl}//api/users`, user);
-    }
+  register(user) {
+    return this.http.post(`${environment.apiUrl}/api/users`, user);
+  }
 
-    delete(id) {
-        return this.http.delete(`${environment.apiUrl}/api/users/${id}`);
-    }
+  delete(id) {
+    return this.http.delete(`${environment.apiUrl}/api/users/${id}`);
+  }
 }
