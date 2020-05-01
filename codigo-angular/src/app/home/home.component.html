@@ -1,9 +1,17 @@
-<h1>Hi {{currentUser.firstName}}!</h1>
+<h1>Hi {{currentUser.name}}!</h1>
 <p>You're logged in with Angular 7!!</p>
+<hr>
 <h3>All registered users:</h3>
-<ul>
-    <li *ngFor="let user of users">
-        {{user.email}} ({{user.firstName}} {{user.lastName}})
-        - <a (click)="deleteUser(user.id)" class="text-danger">Delete</a>
-    </li>
-</ul>
+<table class="table table-striped">
+    <tr class="thead-dark">
+        <th>E-mail</th>
+        <th>Nome</th>
+        <th>Ação</th>
+    </tr>
+    <tr *ngFor="let user of users">
+        <th>{{user.email}}</th>
+        <th>{{user.name}}</th>
+        <th><a (click)="deleteUser(user.id)" class="text-danger">Delete</a></th>
+
+    </tr>
+</table>
