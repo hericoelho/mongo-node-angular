@@ -29,7 +29,6 @@ module.exports = {
       var email;
       var password;
 
-      console.log(req.query);
       if (req.body.email) {
          email = req.body.email;
          password = req.body.password;
@@ -37,19 +36,25 @@ module.exports = {
          email = req.query.email;
          password = req.query.password;
       }
-
+      console.log(req.body.password);
       userModel.findOne({ email: email }, 'nome email cpf password')
          .then(user => {
-            if (bcrypt.compareSync(password, user.password)) {
-               const token = jwt.sign({ id: user._id }, req.app.get('secretKey'), { expiresIn: '1h' });
-               res.setHeader('Access-Control-Allow-Headers', 'Authorization,content-type');
-               res.setHeader('Access-Control-Expose-Headers', 'Authorization');
-               res.header('Authorization', 'Bearer ' + token);
-               res.json({ status: "success", message: "Usuario autenticado com sucesso!!!", data: { user: user, token: token } });
-            } else {
-               res.json({ status: "error", message: "Não foi possivel autenticar o usuario. Por favor verifique os dados de email e password!!!", data: null });
+            if (user) {
+               if (bcrypt.compareSync(password, user.password)) {
+                  const token = jwt.sign({ id: user._id }, req.app.get('secretKey'), { expiresIn: '1h' });
+                  res.setHeader('Access-Control-Allow-Headers', 'Authorization,content-type');
+                  res.setHeader('Access-Control-Expose-Headers', 'Authorization');
+                  res.header('Authorization', 'Bearer ' + token);
+                  res.json({ status: "success", message: "Usuario autenticado com sucesso!!!", data: { user: user, token: token } });
+               } else {
+                  res.status(500).json({ status: "error", message: "Não foi possivel autenticar o usuario. Por favor verifique os dados de email e password!!!", data: null });
+               }
+               res.send(user);
+            }else{
+               res.status(500).send({
+                  message: "Não foi possivel autenticar o usuario, verifique o email e senha."
+               });
             }
-            res.send(user);
          }).catch(err => {
             res.status(500).send({
                message: err.message || "Ocorreu um erro ao autenticar o usuario."
