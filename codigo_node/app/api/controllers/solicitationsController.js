@@ -4,6 +4,8 @@ module.exports = {
       const solicitation = new solicitationModel(req.body.solicitation);
 
       solicitation.preProcessing();
+
+      solicitation.processingResult()
       
       solicitation.save()
          .then(data => {
@@ -54,6 +56,8 @@ module.exports = {
                   message: "Nenhuma solicitação encontrada para o  id : " + req.params.id
                });
             }
+            data.processingResult();
+            data.save();
             res.send(data);
          }).catch(err => {
             if (err.kind === 'ObjectId') {

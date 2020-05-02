@@ -23,6 +23,10 @@ const SolicitationSchema = new Schema({
             required: true
         },
     },
+    result: {
+        type: Boolean,
+        default: false,
+    },
     technical_advice: [{
         agent: {
             type: String,
@@ -65,8 +69,8 @@ SolicitationSchema.methods.preProcessing = function () {
         opinion: {
             allowed: false,
             description: "Avaliado conforme tabela padrão",
-        } 
-    } 
+        }
+    }
 
     switch (this.procedure.cod) {
         case '1234': {
@@ -92,6 +96,26 @@ SolicitationSchema.methods.preProcessing = function () {
             processing.opinion.allowed = false;
     }
     this.technical_advice = processing;
+};
+
+SolicitationSchema.methods.processingResult = function () {
+    if (this.technical_advice) {
+        let arrayAdvice = this.technical_advice.slice();
+        arrayAdvice.sort(function (advice1, advice2) {
+            if (advice1.opinion.date > advice2.opinion.date) {
+                return -1;
+            }
+
+            if (advice1.opinion.date > advice2.opinion.date) {
+                return 1;
+            }
+
+            return 0;
+        });
+        console.log(arrayAdvice);
+
+        this.result = arrayAdvice[0].opinion.allowed;
+    }
 };
 
 module.exports = mongoose.model('Solicitation', SolicitationSchema);
