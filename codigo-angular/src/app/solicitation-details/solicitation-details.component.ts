@@ -16,6 +16,7 @@ export class SolicitationDetailsComponent implements OnInit {
   solicitaionForm: FormGroup;
   loading = false;
   submitted = false;
+  addAdvice = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -79,6 +80,7 @@ export class SolicitationDetailsComponent implements OnInit {
           this.solicitation = data;
           this.alertService.success('Novo parecer salvo com sucesso', true);
           this.loading = false;
+          this.addAdvice = false;
         },
         error => {
           this.alertService.error(error);

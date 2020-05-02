@@ -50,12 +50,18 @@
             </div>
         </div>
     </div>
-    <div class="my-5">
+    <div class="my-5" *ngIf="!addAdvice">        
+        <button class="btn btn-primary pull-right" (click)="addAdvice=true">
+            Adicionar parecer
+        </button>
+    </div>
+    <div class="my-5 card p-3" *ngIf="addAdvice">
+        <a class="nav-item nav-link pull-right" (click)="addAdvice=false">X</a>
         <h3>Novo Parecer</h3>
         <div class="form-group">
             <label for="firstName">Autor</label>
             <input type="text" formControlName="agent" class="form-control"
-                [ngClass]="{ 'is-invalid': submitted && f.agent.errors }" placeholder="Nome do autor do parecer"/>
+                [ngClass]="{ 'is-invalid': submitted && f.agent.errors }" placeholder="Nome do autor do parecer" />
             <div *ngIf="submitted && f.agent.errors" class="invalid-feedback">
                 <div *ngIf="f.agent.errors.required">Campo Autor é obrigatório</div>
             </div>
@@ -76,7 +82,8 @@
         <div class="form-group">
             <label for="firstName">Descrição</label>
             <textarea formControlName="description" class="form-control"
-                [ngClass]="{ 'is-invalid': submitted && f.description.errors }" placeholder="Descrição sobre a avaliação do parecer" ></textarea>
+                [ngClass]="{ 'is-invalid': submitted && f.description.errors }"
+                placeholder="Descrição sobre a avaliação do parecer"></textarea>
             <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
                 <div *ngIf="f.description.errors.required">Campo Descrição é obrigatório</div>
             </div>
