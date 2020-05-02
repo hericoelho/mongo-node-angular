@@ -1,0 +1,19 @@
+version: '3.7'
+volumes:
+  data:
+  config:
+services:
+  angular:
+    container_name: angular
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '80:80'
+    networks:
+     - frontendAngularNode
+
+networks:
+ frontendAngularNode:
+  driver: bridge
+  name: frontendAngularNode

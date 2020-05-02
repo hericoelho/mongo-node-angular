@@ -1,0 +1,387 @@
+{
+	"info": {
+		"_postman_id": "ca429884-c6c2-41f7-85f2-171c46fecf9c",
+		"name": "oracle+node+angular",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Criar Solicitação",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlYTg5NjQxZmVjMTRiMWQ4YmI0MTc1YiIsImlhdCI6MTU4ODM1NjYxNywiZXhwIjoxNTg4MzYwMjE3fQ.lKtdXAz5FUXbGkHQRW_iACuTCFOTdvd_BDoXSH0vszs",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"solicitation\": {\n\t\t\"patient\": { \n\t\t\t\"name\":\"Herivelton Coelho5\",\n\t\t\t\"age\": 32 ,\n\t\t\t\"sex\": 0 \n\t\t},\n\t    \"procedure\": {\n\t        \"cod\": \"10101012\"\n\t    },\n\t    \"technical_advice\": [{\n\t        \"agent\": \"herivelton\",\n\t        \"opinion\": {\n\t            \"allowed\": true,\n\t            \"description\": \"Paciente se encaixa nos requisitos\"\n\t        }\n\t    }] \n\t}\n   \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/solicitations/",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"solicitations",
+						""
+					]
+				},
+				"description": "localhost:3000/api/solicitations/"
+			},
+			"response": []
+		},
+		{
+			"name": "Listar todas as solicitações",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlYTg5NjQxZmVjMTRiMWQ4YmI0MTc1YiIsImlhdCI6MTU4ODM3NDUyMywiZXhwIjoxNTg4Mzc4MTIzfQ.P-JS7O2j7hA1tiRPCL_mWfofcv1KypdEeogj1Ofdaa4",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3000/api/solicitations/",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"solicitations",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Detalhes de solicitação",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlYTg5NjQxZmVjMTRiMWQ4YmI0MTc1YiIsImlhdCI6MTU4ODM2MzU3NSwiZXhwIjoxNTg4MzY3MTc1fQ.0SI_GjW4k0D07s6uzsr-USnsS5xs03CzMUszMg4yaFQ",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3000/api/solicitations/5eac3291f3a7c050a3056e03",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"solicitations",
+						"5eac3291f3a7c050a3056e03"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Atualizar uma solicitação",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "x-access-token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlYTg5NjQxZmVjMTRiMWQ4YmI0MTc1YiIsImlhdCI6MTU4ODM2MzU3NSwiZXhwIjoxNTg4MzY3MTc1fQ.0SI_GjW4k0D07s6uzsr-USnsS5xs03CzMUszMg4yaFQ"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"solicitation\": {\n\t\t\"patient\": { \n\t\t\t\"name\":\"Herivelton Coelho2\",\n\t\t\t\"age\": 32 ,\n\t\t\t\"sex\": 0 \n\t\t},\n\t\t\"technical_advice\": [\n\t        {\n\t            \"opinion\": {\n\t                \"allowed\": true,\n\t                \"date\": \"2020-04-28T22:35:46.545Z\",\n\t                \"description\": \"Paciente se encaixa nos requisitos\"\n\t            },\n\t            \"_id\": \"5ea8afc2cfd04353d9a3d3c8\",\n\t            \"agent\": \"herivelton\"\n\t        },\n\t        {\n\t            \"opinion\": {\n\t                \"allowed\": false,\n\t                \"description\": \"Iadade avançada do paciente se torna um fator de risco\"\n\t            },\n\t            \"_id\": \"5ea8afc2cfd04353d9a3d3c8\",\n\t            \"agent\": \"herivelton\"\n\t        }\n\t    ]\n\t}\n   \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/solicitations/5eac3291f3a7c050a3056e03",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"solicitations",
+						"5eac3291f3a7c050a3056e03"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deletar uma solicitação",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "x-access-token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlYTg5NjQxZmVjMTRiMWQ4YmI0MTc1YiIsImlhdCI6MTU4ODExMDg1OCwiZXhwIjoxNTg4MTE0NDU4fQ.ubwwR6931GBcIF0IuQls9NOSzJ2wN10EWbMvWiuO00I"
+					}
+				],
+				"url": {
+					"raw": "localhost:3000/api/solicitations/5ea8afc2cfd04353d9a3d3c7",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"solicitations",
+						"5ea8afc2cfd04353d9a3d3c7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cadastrar usuario",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "nome",
+							"value": "Herivelton Coelho",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "hericoelho@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "Teste@123",
+							"type": "text"
+						},
+						{
+							"key": "cpf",
+							"value": "06269398959",
+							"type": "text"
+						},
+						{
+							"key": "data_de_nascimento",
+							"value": "2001-01-01",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:3000/api/users/",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "hericoelho@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "Teste@123",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:3000/api/users/authenticate",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users",
+						"authenticate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar todos os usuarios",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkYzAyNDBhZDZhMDI3Mjc3MzU5NmQ4NiIsImlhdCI6MTU3Mjk2NjQzMSwiZXhwIjoxNTcyOTcwMDMxfQ.A3jemPem5d50ek6G952O7LN08gJy9Pf98zErtWG_EW8",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3000/api/users/",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Detalhes de usuario",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkYzAyNDBhZDZhMDI3Mjc3MzU5NmQ4NiIsImlhdCI6MTU3Mjk3MzIwNSwiZXhwIjoxNTcyOTc2ODA1fQ.540SkcoP69Fr9pepRnvdIFUNu_XBGM2z0UCjA2bhP14",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3000/api/users/5dc0240ad6a0272773596d86",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users",
+						"5dc0240ad6a0272773596d86"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Atualizar usuarios",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "nome",
+							"value": "fulando de tal de tal",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "fulando@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "tal@123",
+							"type": "text"
+						},
+						{
+							"key": "cpf",
+							"value": "012.345.678-91",
+							"type": "text"
+						},
+						{
+							"key": "data_de_nascimento",
+							"value": "2001-01-01",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:3000/api/users/5dbf7f725a5f393ff308fc57",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users",
+						"5dbf7f725a5f393ff308fc57"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deletar usuario",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/api/users/5dbf7f725a5f393ff308fc57",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users",
+						"5dbf7f725a5f393ff308fc57"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

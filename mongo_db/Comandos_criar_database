@@ -1,0 +1,21 @@
+ 
+docker-compose exec mongo mongo
+use admin
+db.auth("admin","admin")
+db.updateUser("admin",
+ {
+ roles: [ "userAdminAnyDatabase",
+          "dbAdminAnyDatabase",
+          "readWriteAnyDatabase"]
+ }
+)
+use db_node_mongo
+db.createUser(
+ {
+ user: "admin",
+ pwd: "admin",
+ roles: [ {role:"userAdmin", db:"db_node_mongo"},
+          {role: "dbAdmin", db:"db_node_mongo"},
+          {role: "readWrite", db:"db_node_mongo"}]
+ }
+)

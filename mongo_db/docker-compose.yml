@@ -1,0 +1,35 @@
+version: '3.7'
+volumes:
+  data:
+  config:
+services:
+  mongo:
+    image: mongo:4.2.6   
+    volumes:
+      - ./data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin
+    restart: always
+    ports:
+     - 27017:27017
+    container_name: mongo 
+    networks:
+     - backendNodeMongo
+  mongo-express:
+    image: mongo-express:0.54.0
+    links:
+      - mongo
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: admin
+      ME_CONFIG_MONGODB_ADMINPASSWORD: admin
+    container_name: mongo-express  
+    networks:
+     - backendNodeMongo
+
+networks:
+ backendNodeMongo:
+  driver: bridge
+  name: backendNodeMongo

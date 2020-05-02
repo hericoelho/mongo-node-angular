@@ -1,7 +1,7 @@
 //Set up mongoose connection
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
-const mongoDB = 'mongodb://admin:admin@mongo/teste_node_mongo';
+const mongoDB = 'mongodb://admin:admin@mongo/db_node_mongo';
 
 mongoose.connect(mongoDB, {
     useNewUrlParser: true,
