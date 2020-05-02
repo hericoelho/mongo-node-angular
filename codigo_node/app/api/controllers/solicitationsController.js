@@ -1,9 +1,10 @@
 const solicitationModel = require('../models/solicitationsModel');
 module.exports = {
    create: function (req, res) {
-      console.log(req.body);
       const solicitation = new solicitationModel(req.body.solicitation);
 
+      solicitation.preProcessing();
+      
       solicitation.save()
          .then(data => {
             res.send(data);

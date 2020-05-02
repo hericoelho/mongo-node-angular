@@ -49,4 +49,49 @@ const SolicitationSchema = new Schema({
     }],
 });
 
+// PROCEDIMENTO	IDADE	SEXO	PERMITIDO
+// 1234			10		M		SIM
+// 1234			20		M		SIM
+// 4567			20		M		SIM
+// 4567			30		F		SIM
+// 6789			10		F		NÃO
+// 6789			10		M		SIM
+
+
+SolicitationSchema.methods.preProcessing = function () {
+
+    let processing = {
+        agent: "Sistema",
+        opinion: {
+            allowed: false,
+            description: "Avaliado conforme tabela padrão",
+        } 
+    } 
+
+    switch (this.procedure.cod) {
+        case '1234': {
+            if (this.patient.sex === 0 && (this.patient.age === 10 || this.patient.age === 20)) {
+                processing.opinion.allowed = true;
+            }
+        }
+            break;
+        case '4567': {
+            if ((this.patient.sex === 0 && this.patient.age === 20) || (this.patient.sex === 1 && this.patient.age === 30)) {
+                processing.opinion.allowed = true;
+            }
+
+        }
+            break;
+        case '6789': {
+            if (this.patient.sex === 0 && this.patient.age === 10) {
+                processing.opinion.allowed = true;
+            }
+        }
+            break;
+        default:
+            processing.opinion.allowed = false;
+    }
+    this.technical_advice = processing;
+};
+
 module.exports = mongoose.model('Solicitation', SolicitationSchema);
