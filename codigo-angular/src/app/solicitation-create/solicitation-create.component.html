@@ -38,9 +38,9 @@
         <div class="form-group">
             <label for="cod">Código</label>
             <input type="cod" formControlName="cod" class="form-control"
-            [ngClass]="{ 'is-invalid': submitted && f.cod.errors }" placeholder="Codigo do procedimento"/>
+            [ngClass]="{ 'is-invalid': submitted && f.cod.errors }" placeholder="Código do procedimento"/>
             <div *ngIf="submitted && f.cod.errors" class="invalid-feedback">
-                <div *ngIf="f.cod.errors.required">O campo codigo do procedimento é obrigatório</div>
+                <div *ngIf="f.cod.errors.required">O campo código do procedimento é obrigatório</div>
             </div>
         </div>
     </div>
@@ -49,6 +49,6 @@
             <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
             Enviar
         </button>
-        <a routerLink="/login" class="btn btn-link">Cancel</a>
+        <a routerLink="/login" class="btn btn-link">Sair</a>
     </div>
 </form>

@@ -1,11 +1,11 @@
 <!-- nav -->
 <nav class="navbar navbar-expand navbar-dark">
   <div class="navbar-nav">
-    <a class="nav-item nav-link" routerLink="/">Home</a>
+    <a class="nav-item nav-link" routerLink="/">Início</a>
     <ng-template [ngIf]="currentUser" [ngIfElse]="notLoged">
       <a class="nav-item nav-link" routerLink="/solicitation">Solicitações</a>
       <a class="nav-item nav-link" routerLink="/solicitation/new">Nova solicitação</a>
-      <a class="nav-item nav-link pull-right" (click)="logout()">Logout</a>
+      <a class="nav-item nav-link pull-right" (click)="logout()">Sair</a>
     </ng-template>
     <ng-template #notLoged>
       <a class="nav-item nav-link" routerLink="/login">Entrar</a>
