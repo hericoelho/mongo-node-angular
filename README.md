@@ -60,13 +60,13 @@ Solicitação de autorização de procedimentos médicos
 Você é o desenvolvedor responsável por um sistema de controle de autorizações de procedimentos médicos para um plano de saúde.
 Os critérios para permitir a execução de um procedimento são idade e sexo, de acordo com a tabela a seguir:
 
-PROCEDIMENTO	IDADE	SEXO	PERMITIDO
-1234			10		M		SIM
-4567			20		M		SIM
-6789			10		F		NÃO
-6789			10		M		SIM
-1234			20		M		SIM
-4567			30		F		SIM
+PROCEDIMENTO   IDADE	SEXO	PERMITIDO
+1234              10		M		SIM
+4567			      20		M		SIM
+6789			      10		F		NÃO
+6789			      10		M		SIM
+1234			      20		M		SIM
+4567			      30		F		SIM
 
 Procedimentos não listados na tabela devem ser negados
 
@@ -91,9 +91,14 @@ Requisitos desejáveis:
 
 # Sobre a Solução aplicada
 
-* Endereço : o banco NoSQL permite que salve todos os dados como um objeto, para falicitar podemons só pedir o CEP para o Usuario e assim consultar um serviço para buscar o restante do enderço por um serviço como  o ViaCEP (viacep.com.br/ws/01001000/json/). Caso o banco fosse SQL teriamos que ter toda infrastrutura de CEP (Tabela) tem Logradoro (Tabela) tem uma cidade (Tabela) que tem um estado (Tabela) que tem um pais (Tabela) e suas chaves estrangeiras
+* Na branch principal(master) o banco usado é o mongodb (não relacional)
 
-* Telefone : Igualmente salvo como um array de String associado a um usuario, possui tambem uma validação de tamanho no backend (10 ~11 com 2 para o DD e 8 ou 9 digitos )
+* Na branch principal(bd-relacional-mysql) o banco usado é o mysql (relacional), porém não finalizado a adequação do backend (somente o cadastro de usuario funcional)
 
-* CPF; validação no backend, ao criar o usuario ele testa para ver se o cpf é valido. Foi configurado tambem como unique no banco
+* Na Pasta Mysql(branch bd-relacional-mysql) executar docker-compose up (-d), para subir o banco de dados (junto esta o phpmyadmin porta (8087), opcional que  auxilia na visualização dos dados no banco)
+
+* A imagem base_de_dados_relacional.png (branch bd-relacional-mysql) esta retratada o esquema da base de dados relacional
+
+* O arquivo mysql_node_angular (branch bd-relacional-mysql) é o dump da base de dados vazia, com somente a estrutura
+
 
