@@ -1,4 +1,4 @@
-const userModel = require('../models/usersModel');
+const { User } = require('../models');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 module.exports = {
@@ -7,23 +7,19 @@ module.exports = {
       if (req.body.cpf) {
          cpfSomenteNumeros = req.body.cpf.replace(/[^\d]+/g, '');
       }
-      const user = new userModel({
+      User.create({
          name: req.body.name,
          cpf: cpfSomenteNumeros,
          email: req.body.email,
          password: req.body.password,
-         data_de_nascimento: req.body.data_de_nascimento,
-         data_de_cadastro: req.body.data_de_cadastro
-      });
-
-      user.save()
-         .then(data => {
-            res.send(data);
-         }).catch(err => {
-            res.status(500).send({
-               message: err.message || "Ocorreu um erro ao cadastrar o usuario."
-            });
+         birth_date: req.body.birth_date
+      }).then(data => {
+         res.send(data);
+      }).catch(err => {
+         res.status(500).send({
+            message: err.message || "Ocorreu um erro ao cadastrar o usuario."
          });
+      });
    },
    authenticate: function (req, res) {
       var email;
@@ -37,11 +33,11 @@ module.exports = {
          password = req.query.password;
       }
       console.log(req.body.password);
-      userModel.findOne({ email: email }, 'name email cpf password')
+      User.findOne({ where: { email: email } }, 'name email cpf password')
          .then(user => {
             if (user) {
-               if (bcrypt.compareSync(password, user.password)) {
-                  const token = jwt.sign({ id: user._id }, req.app.get('secretKey'), { expiresIn: '1h' });
+               if (bcrypt.compareSync(password, user.password)) {                  
+                  const token = jwt.sign({ id: user.id }, req.app.get('secretKey'), { expiresIn: '1h' });
                   res.setHeader('Access-Control-Allow-Headers', 'Authorization,content-type');
                   res.setHeader('Access-Control-Expose-Headers', 'Authorization');
                   res.header('Authorization', 'Bearer ' + token);
@@ -50,7 +46,7 @@ module.exports = {
                   res.status(500).json({ status: "error", message: "Não foi possivel autenticar o usuario. Por favor verifique os dados de email e password!!!", data: null });
                }
                res.send(user);
-            }else{
+            } else {
                res.status(500).send({
                   message: "Não foi possivel autenticar o usuario, verifique o email e senha."
                });
@@ -62,7 +58,7 @@ module.exports = {
          });
    },
    findAll: function (req, res) {
-      userModel.find({}, '_id name email cpf')
+      User.findAll()
          .then(users => {
             res.send(users);
          }).catch(err => {
@@ -72,7 +68,7 @@ module.exports = {
          });
    },
    findOne: function (req, res) {
-      userModel.findById(req.params.id)
+      User.findByPk(req.params.id)
          .then(user => {
             if (!user) {
                return res.status(404).send({
@@ -96,15 +92,15 @@ module.exports = {
       if (req.body.cpf) {
          cpfSomenteNumeros = req.body.cpf.replace(/[^\d]+/g, '');
       }
-      userModel.findByIdAndUpdate(req.params.id,
-         {
-            name: req.body.name,
-            cpf: cpfSomenteNumeros,
-            email: req.body.email,
-            password: req.body.password,
-            data_de_nascimento: req.body.data_de_nascimento,
-            data_de_cadastro: req.body.data_de_cadastro
-         }, { new: true })
+      User.findOrCreate({ where: { id: req.params.id } ,
+         defaults: {
+         name: req.body.name,
+         cpf: cpfSomenteNumeros,
+         email: req.body.email,
+         password: req.body.password,
+         data_de_nascimento: req.body.data_de_nascimento,
+         data_de_cadastro: req.body.data_de_cadastro
+      }})
          .then(user => {
             if (!user) {
                return res.status(404).send({
@@ -124,14 +120,14 @@ module.exports = {
          });
    },
    delete: function (req, res) {
-      userModel.findByIdAndRemove(req.params.id)
+      User.findByPk(req.params.id)
          .then(user => {
             if (!user) {
                return res.status(404).send({
                   message: "Nenhum usuario encontrado para o  id : " + req.params.id
                });
             }
-            res.send(user);
+            res.send(User.User.destroy());
          }).catch(err => {
             if (err.kind === 'ObjectId') {
                return res.status(404).send({
@@ -147,7 +143,7 @@ module.exports = {
          message: "Validade do token atualizada"
       });
    }, fetch: function (req, res) {
-      userModel.findById(req.body.userId)
+      User.findByPk(req.body.userId)
          .then(user => {
             if (!user) {
                return res.status(404).send({

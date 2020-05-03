@@ -2,9 +2,7 @@ const express = require('express');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
 const usersRoutes = require('./routes/usersRoutes');
-const solicitationsRoutes = require('./routes/solicitationsRoutes');
 const authRoutes = require('./routes/authRoutes');
-const mongoose = require('./config/database'); //database configuration
 var jwt = require('jsonwebtoken');
 const app = express();
 var cors = require('cors')
@@ -14,9 +12,6 @@ app.use(cors())
 app.use(express.json());
 
 app.set('secretKey', 'nodeRestApi'); // jwt secret token
-
-// connection to mongodb
-mongoose.connection.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 app.use(logger('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -30,7 +25,6 @@ app.use('/api/users', authRoutes);
 
 // private route
 app.use('/api/users', validateUser, usersRoutes);
-app.use('/api/solicitations', validateUser, solicitationsRoutes);
 
 app.get('/favicon.ico', function (req, res) {
   res.sendStatus(204);
@@ -71,6 +65,6 @@ app.use(function (err, req, res, next) {
 });
 
 
-app.listen(3000, function () {
+app.listen(3333, function () {
   console.log('Node server listening on port 3000');
 });
