@@ -1,5 +1,5 @@
 
-# Oracle-node-angular 
+# Mongo-node-angular 
 Solicitação de autorização de procedimentos médicos
 
 # Requisitos Técnicos da Plataforma
@@ -93,7 +93,7 @@ Requisitos desejáveis:
 
 * Na branch principal(master) o banco usado é o mongodb (não relacional)
 
-* Na branch principal(bd-relacional-mysql) o banco usado é o mysql (relacional), porém não finalizado a adequação do backend (somente o cadastro de usuario funcional)
+* Na branch bd-relacional-mysql o banco usado é o mysql (relacional), porém não finalizado a adequação do backend (somente o cadastro de usuario funcional)
 
 * Na Pasta Mysql(branch bd-relacional-mysql) executar docker-compose up (-d), para subir o banco de dados (junto esta o phpmyadmin porta (8087), opcional que  auxilia na visualização dos dados no banco)
 
